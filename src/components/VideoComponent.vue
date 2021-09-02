@@ -1,5 +1,8 @@
 <template>
-  <div id="video">Recording</div>
+  <div id="video">
+    aaaaaaaaaaa
+    <video></video>
+  </div>
 </template>
 <script>
 export default {

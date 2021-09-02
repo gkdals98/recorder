@@ -1,5 +1,5 @@
 <template>
-  <div id="record-main">Record Page</div>
+  <div id="record-main">ccccccccccccc</div>
 </template>
 <script>
 export default {
