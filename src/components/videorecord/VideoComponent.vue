@@ -1,0 +1,14 @@
+<template>
+  <div id="video">Recording</div>
+</template>
+<script>
+export default {
+  name: "VideoComponent",
+};
+</script>
+<style lang="scss" scoped>
+#video {
+  background-color: azure;
+  color: darkslategray;
+}
+</style>
