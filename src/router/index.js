@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import RecordMainPage from "pages/recordmain/RecordMainPage";
-import SettingPage from "pages/setting/SettingPage";
+import RecordMainPage from "views/RecordMainPage";
+import SettingPage from "views/SettingPage";
 
 Vue.use(VueRouter);
 
