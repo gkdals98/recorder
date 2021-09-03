@@ -1,33 +1,32 @@
 <template>
   <div class="record-main">
-    <RecordController />
+    <SelectRecordType />
     <div id="record-container">
       <VideoComponent v-if="curPage == 'video'" />
-      <AudioComponent v-if="curPage == 'audio'" />
+      <AudioComponent v-if="curPage == 'voice'" />
     </div>
   </div>
 </template>
 <script>
-import RecordController from "@/components/RecordController";
+import SelectRecordType from "@/components/SelectRecordType";
 import VideoComponent from "@/components/VideoComponent";
 import AudioComponent from "@/components/AudioComponent";
 
 export default {
   name: "RecordMainPage",
-  components: { VideoComponent, AudioComponent, RecordController },
+  components: { VideoComponent, AudioComponent, SelectRecordType },
   computed: {
     curPage: function () {
-      console.log("this.$store.GET_CURPAGE", this.$store.getters.GET_CURPAGE);
-      return this.$store.getters.GET_CURPAGE;
+      return this.$store.state.page_controller.curPage;
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 .record-main {
-  background-color: azure;
   color: darkslategray;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 </style>

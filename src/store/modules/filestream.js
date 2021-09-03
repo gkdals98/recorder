@@ -1,13 +1,13 @@
-const video_controller = {
+const file_steam = {
     state: () => {
       return {
-        curVideo: null,
-        isRecording: false,
+        curRecordingState: "stop",
+        videoSteam: null,
       };
     },
     getters: {
-      GET_VIDEO: (state) => state.curVideo,
-      GET_IS_RECORDING: (state) => state.isRecording,
+      GET_VIDEO: (state) => state.videoSteam,
+      GET_CUR_RECORDING_STATE: (state) => state.curRecordingState,
     },
     mutation: {
       SET_RECORDING: (state) => (state.isLoading = true),
@@ -23,4 +23,4 @@ const video_controller = {
       }
     },
   };
-  export default video_controller;
+  export default file_steam;

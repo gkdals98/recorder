@@ -30,6 +30,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0 10px 0 20px;
+  background-color: darkslategray;
   #nav {
     padding: 25px;
     display: flex;

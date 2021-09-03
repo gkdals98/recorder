@@ -8,17 +8,19 @@ const page_controller = {
   },
   getters: {
     GET_CURPAGE: (state) => {
+      console.log("Is this ", state.curPage);
       return state.curPage;
     },
     GET_IS_LOADING: (state) => state.isLoading,
   },
-  mutation: {
+  mutations: {
     SET_CURPAGE_SETTING: (state) => (state.curPage = "setting"),
     SET_CURPAGE_VIDEO: (state) => {
-      console.log("Call this");
       state.curPage = "video";
     },
-    SET_CURPAGE_VOICE: (state) => (state.curPage = "voice"),
+    SET_CURPAGE_AUDIO: (state) => {
+      state.curPage = "audio";
+    },
     SET_LOADING: (state) => (state.isLoading = true),
     SET_LOADING_END: (state) => (state.isLoading = false),
   },
