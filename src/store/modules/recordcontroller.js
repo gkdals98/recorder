@@ -2,6 +2,7 @@ const record_controller = {
     state: () => {
       return {
         curRecordingState: "stop",
+        videoStream: null,
       };
     },
     getters: {

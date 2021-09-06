@@ -6,12 +6,6 @@
     <button v-on:click="stopButtonClicked">
       <img src="@/assets/svg/stop.svg" height="40px" />
     </button>
-    <button v-on:click="playButtonClicked">
-      <img src="@/assets/svg/play.svg" height="40px" />
-    </button>
-    <button v-on:click="pauseButtonClicked">
-      <img src="@/assets/svg/pause.svg" height="40px" />
-    </button>
   </div>
 </template>
 <script>
@@ -28,12 +22,6 @@ export default {
   methods: {
     recButtonClicked: function () {
       this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
-    },
-    playButtonClicked: function () {
-      this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
-    },
-    pauseButtonClicked: function () {
-      this.$store.commit("page_controller/SET_CURPAGE_VOICE");
     },
     stopButtonClicked: function () {
       this.$store.commit("page_controller/SET_CURPAGE_VOICE");
