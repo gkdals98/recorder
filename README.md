@@ -40,16 +40,15 @@ yarn lint
 + 녹음, 녹화가 완료된 상태에서 다시 녹음, 녹화를 시도하면 기존 데이터를 삭제하고 새로 녹음, 녹화를 시도한다.
 + 옵션에서 세팅가능한 값은 아래와 같다.
   * 비디오 - audioBitsPerSecond, videoBitsPerSecond, mimetype, bitsPerSecond
-  * 오디오 - audioBitsPerSecond, videoBitsPerSecond, mimetype, bitsPerSecond
+  * 오디오 - 
 
 #### 설계
 + core
-  * 현재 저장 중인 파일에 대한 정보를 들고있는 store,
-  * 작업중인 파일을 컨트롤하는 컨트롤러.
+  * 현재 페이지가 어디인지, 페이지가 넘어가는 중인지를 확인하는 store module.
+  * 작업중인 파일, 녹음 및 녹화 여부, controll 가능 여부를 컨트롤하는 store module.
 + 메인 페이지
-  * 각각 Video, Audio 두 페이지를 router로 들고있다.
-  * Record, Pause, Stop(Finish), Reset, 다시듣기, Send 총 네 개의 버튼.
-  * Stop을 누르면 다시 재생되어야한다.
+  * Video, Audio의 두 컴포넌트가 있다.
+  * 
 + Setting 팝업
   * Video Page에 팝업을 출력하는 버튼이 있음.
   * 

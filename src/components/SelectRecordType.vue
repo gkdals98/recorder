@@ -1,10 +1,10 @@
 <template>
   <div id="record-controller">
     <button v-on:click="cameraButtonClicked">
-      <img src="@/assets/svg/video-camera.svg" height="30px" />
+      <img class="rec-type" src="@/assets/svg/video-camera.svg" />
     </button>
     <button v-on:click="micButtonClicked">
-      <img src="@/assets/svg/mic.svg" height="30px" />
+      <img class="rec-type" src="@/assets/svg/mic.svg" />
     </button>
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
     height: 60px;
     text-align: center;
     padding: 8px;
+    .rec-type {
+      height: 30px;
+    }
   }
 }
 </style>

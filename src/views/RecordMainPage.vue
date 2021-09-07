@@ -3,7 +3,7 @@
     <SelectRecordType />
     <div id="record-container">
       <VideoComponent v-if="curPage == 'video'" />
-      <AudioComponent v-if="curPage == 'voice'" />
+      <AudioComponent v-if="curPage == 'audio'" />
     </div>
   </div>
 </template>

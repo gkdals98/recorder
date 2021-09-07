@@ -4,26 +4,17 @@ const page_controller = {
     return {
       curPage: "video",
       isLoading: false,
+      controllBlock: false,
     };
-  },
-  getters: {
-    GET_CURPAGE: (state) => {
-      console.log("Is this ", state.curPage);
-      return state.curPage;
-    },
-    GET_IS_LOADING: (state) => state.isLoading,
   },
   mutations: {
     SET_CURPAGE_SETTING: (state) => (state.curPage = "setting"),
-    SET_CURPAGE_VIDEO: (state) => {
-      state.curPage = "video";
-    },
-    SET_CURPAGE_AUDIO: (state) => {
-      state.curPage = "audio";
-    },
+    SET_CURPAGE_VIDEO: (state) => (state.curPage = "video"),
+    SET_CURPAGE_AUDIO: (state) => (state.curPage = "audio"),
     SET_LOADING: (state) => (state.isLoading = true),
     SET_LOADING_END: (state) => (state.isLoading = false),
+    SET_CONTROLL_BLOCK: (state) => (state.controllBlock = true),
+    SET_CONTROLL_UNLOCK: (state) => (state.controllBlock = false),
   },
-  action: {},
 };
 export default page_controller;

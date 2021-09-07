@@ -1,9 +1,13 @@
 <template>
-  <div id="record-main">ccccccccccccc</div>
+  <div id="record-main">
+    <RecordController />
+  </div>
 </template>
 <script>
+import RecordController from "@/components/RecordController";
 export default {
-  name: "RecordMainPage",
+  name: "AudioComponent",
+  components: { RecordController },
 };
 </script>
 <style lang="scss" scoped>
