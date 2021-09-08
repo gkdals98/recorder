@@ -5,6 +5,9 @@
       class="rec"
       v-bind:class="{ Rec: onRec, notRec: !onRec, justToggled: conrtollBlock }"
     ></button>
+    <button v-on:click="sendButtonClicked" class="send-button">
+      <img class="send-icon" src="@/assets/svg/upload.svg" />
+    </button>
   </div>
 </template>
 <script>
@@ -35,6 +38,12 @@ export default {
         this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
       }
     },
+    sendButtonClicked: function () {
+      if (this.checkControllEnable()) {
+        this.onRec = !this.onRec;
+        this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
+      }
+    },
   },
 };
 </script>
@@ -42,8 +51,12 @@ export default {
 #record-controller {
   height: 60px;
   padding: 5px;
-  background-color: #292929;
-  vertical-align: center;
+  background-color: #494949;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
 
   .rec {
     width: 30px;
@@ -74,6 +87,13 @@ export default {
       pointer-events: none;
     }
   }
+
+  .send-button {
+    height: 25px;
+    .send-icon {
+      height: 15px;
+    }
+  }
 }
 @keyframes pulse {
   0% {
@@ -84,6 +104,11 @@ export default {
   }
   90% {
     box-shadow: 0px 0px 8px 13px rgba(173, 0, 0, 0);
+  }
+}
+@media (max-width: 767px) {
+  #record-controller {
+    height: 40px;
   }
 }
 </style>

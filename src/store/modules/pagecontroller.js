@@ -4,7 +4,8 @@ const page_controller = {
     return {
       curPage: "video",
       isLoading: false,
-      controllBlock: false,
+      shortControllBlock: false,
+      onRecControllBlock: false,
     };
   },
   mutations: {
@@ -13,8 +14,10 @@ const page_controller = {
     SET_CURPAGE_AUDIO: (state) => (state.curPage = "audio"),
     SET_LOADING: (state) => (state.isLoading = true),
     SET_LOADING_END: (state) => (state.isLoading = false),
-    SET_CONTROLL_BLOCK: (state) => (state.controllBlock = true),
-    SET_CONTROLL_UNLOCK: (state) => (state.controllBlock = false),
+    SET_CONTROLL_BLOCK: (state) => (state.shortControllBlock = true),
+    SET_CONTROLL_UNLOCK: (state) => (state.shortControllBlock = false),
+    SET_CONTROLL_ONREC: (state) => (state.onRecControllBlock = true),
+    SET_CONTROLL_RECEND: (state) => (state.onRecControllBlock = false),
   },
 };
 export default page_controller;

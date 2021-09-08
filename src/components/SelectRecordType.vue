@@ -38,4 +38,23 @@ export default {
     }
   }
 }
+
+@media (max-width: 767px) {
+  #record-controller {
+    width: 60px;
+    padding: 5px;
+
+    button {
+      margin: 2px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      padding: 5px;
+      .rec-type {
+        height: 22px;
+      }
+    }
+  }
+}
 </style>
