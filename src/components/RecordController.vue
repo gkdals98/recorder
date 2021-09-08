@@ -33,13 +33,13 @@ export default {
   },
   methods: {
     recButtonToggled: function () {
-      if (this.checkControllEnable()) {
+      if (this.setShotControllBlock()) {
         this.onRec = !this.onRec;
         this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
       }
     },
     sendButtonClicked: function () {
-      if (this.checkControllEnable()) {
+      if (this.setShotControllBlock()) {
         this.onRec = !this.onRec;
         this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
       }
