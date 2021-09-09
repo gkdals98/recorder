@@ -1,10 +1,11 @@
 <template>
   <div id="video_main">
-    <video id="player" v-if="curRecord == 'stop'"></video>
+    <video id="player" v-if="!curRecord"></video>
     <video
       id="record-preview"
-      v-if="curRecord == 'onRec'"
-      :src="curVideoFile"
+      v-if="curRecord"
+      :srcObject.prop="curVideoFile"
+      autoplay
     ></video>
     <RecordController />
   </div>
@@ -16,7 +17,7 @@ export default {
   components: { RecordController },
   computed: {
     curRecord: function () {
-      return this.$store.state.record_controller.curRecordingState;
+      return this.$store.state.record_controller.isRecording;
     },
     curVideoFile: function () {
       return this.$store.state.record_controller.videoStream;
@@ -31,12 +32,10 @@ export default {
   #player {
     width: 80vw;
     max-width: 900px;
-    background-color: #daa2a2;
   }
   #record-preview {
     width: 80vw;
     max-width: 900px;
-    background-color: turquoise;
   }
 }
 </style>

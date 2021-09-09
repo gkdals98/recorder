@@ -35,7 +35,22 @@ export default {
     recButtonToggled: function () {
       if (this.setShotControllBlock()) {
         this.onRec = !this.onRec;
-        this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
+        const self = this;
+        navigator.mediaDevices
+          .getUserMedia(this.$store.state.record_controller.settingObj)
+          .then(function (mediaStreamObj) {
+            mediaStreamObj.onstop = () => {
+              let blob = new Blob(this.$store.state.record_controller.chunks, {
+                type: "video/mp4;",
+              });
+              let videoURL = window.URL.createObjectURL(blob);
+              self.$store.commit("record_controller/SET_CUR_MEDIA", videoURL);
+            };
+            self.$store.dispatch(
+              "record_controller/RECORD_START",
+              mediaStreamObj
+            );
+          });
       }
     },
     sendButtonClicked: function () {

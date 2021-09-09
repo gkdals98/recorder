@@ -14,6 +14,46 @@
     <router-view />
   </div>
 </template>
+<script>
+export default {
+  created: function () {
+    this.checkDeviceError();
+  },
+  methods: {
+    checkDeviceError: () => {
+      if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+        navigator.mediaDevices.getUserMedia = function (constraintObj) {
+          let getUserMedia =
+            navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+          if (!getUserMedia) {
+            return Promise.reject(
+              new Error("getUserMedia is not implemented in this browser")
+            );
+          }
+          return new Promise(function (resolve, reject) {
+            getUserMedia.call(navigator, constraintObj, resolve, reject);
+          });
+        };
+      } else {
+        navigator.mediaDevices
+          .enumerateDevices()
+          .then((devices) => {
+            devices.forEach((device) => {
+              console.log(device.kind.toUpperCase(), device.label);
+              //, device.deviceId
+            });
+          })
+          .catch((err) => {
+            this.$router.push("/error");
+            console.log(err.name, err.message);
+            this.$store.commit("record_controller/SET_ERROR_MSG", err.message);
+          });
+      }
+    },
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
