@@ -7,6 +7,7 @@ const record_controller = {
       mediaStream: null,
       chunks: [],
       curFinishedFile: null,
+      blob: null,
       settingObj: {
         audio: true,
         video: {
@@ -30,18 +31,25 @@ const record_controller = {
       console.log("payload is here finish", payload);
       state.curFinishedFile = payload;
     },
+    SET_CUR_BLOB: function (state, payload) {
+      console.log("payload is here blob", payload);
+      state.blob = payload;
+    },
   },
   actions: {
     RECORD_START: ({ commit, state }, payload) => {
       commit("SET_RECORDING");
-      console.log(payload);
+      console.log("Record start", payload);
       state.mediaStream = payload;
-      state.curMediaRecorder = new MediaRecorder(payload);
+      state.curMediaRecorder = new MediaRecorder(state.mediaStream);
 
       state.curMediaRecorder.onstop = () => {
-        let blob = new Blob(state.chunks, { type: "video/mp4;" });
+        console.log("Who makes error 2");
+        let blob = new Blob(state.chunks, { type: "video/mp4" });
+        commit("SET_CUR_BLOB", blob);
         commit("SET_CHUNKS_CLEAR");
-        let videoURL = window.URL.createObjectURL(blob);
+        let videoURL = window.URL.createObjectURL(state.blob);
+        commit("SET_RECORDING_FIN");
         commit("SET_CUR_FINISHED_FILE", videoURL);
       };
       state.curMediaRecorder.ondataavailable = function (ev) {
@@ -51,10 +59,8 @@ const record_controller = {
       state.curMediaRecorder.start();
       console.log(state.curMediaRecorder.state);
     },
-    RECORD_STOP: ({ commit, state }) => {
+    RECORD_STOP: ({ state }) => {
       state.curMediaRecorder.stop();
-      commit("SET_RECORDING_FIN");
-      commit("SET_STREAM_CLEAR");
     },
   },
 };

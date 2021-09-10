@@ -35,6 +35,10 @@ export default {
     recButtonToggled: function () {
       if (this.setShotControllBlock()) {
         this.onRec = !this.onRec;
+        console.log(
+          "Who make error",
+          this.$store.state.record_controller.isRecording
+        );
         if (!this.$store.state.record_controller.isRecording) {
           const self = this;
           navigator.mediaDevices
@@ -46,6 +50,7 @@ export default {
               );
             });
         } else {
+          console.log("Who makes error 1");
           this.$store.dispatch("record_controller/RECORD_STOP");
         }
       }
