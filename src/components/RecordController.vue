@@ -3,7 +3,7 @@
     <button
       v-on:click="recButtonToggled"
       class="rec"
-      v-bind:class="{ Rec: onRec, notRec: !onRec, justToggled: conrtollBlock }"
+      v-bind:class="{ Rec: onRec, notRec: !onRec, conBlock: conrtollBlock }"
     ></button>
     <button v-on:click="sendButtonClicked" class="send-button">
       <img class="send-icon" src="@/assets/svg/upload.svg" />
@@ -35,22 +35,19 @@ export default {
     recButtonToggled: function () {
       if (this.setShotControllBlock()) {
         this.onRec = !this.onRec;
-        const self = this;
-        navigator.mediaDevices
-          .getUserMedia(this.$store.state.record_controller.settingObj)
-          .then(function (mediaStreamObj) {
-            mediaStreamObj.onstop = () => {
-              let blob = new Blob(this.$store.state.record_controller.chunks, {
-                type: "video/mp4;",
-              });
-              let videoURL = window.URL.createObjectURL(blob);
-              self.$store.commit("record_controller/SET_CUR_MEDIA", videoURL);
-            };
-            self.$store.dispatch(
-              "record_controller/RECORD_START",
-              mediaStreamObj
-            );
-          });
+        if (!this.$store.state.record_controller.isRecording) {
+          const self = this;
+          navigator.mediaDevices
+            .getUserMedia(this.$store.state.record_controller.settingObj)
+            .then(function (mediaStreamObj) {
+              self.$store.dispatch(
+                "record_controller/RECORD_START",
+                mediaStreamObj
+              );
+            });
+        } else {
+          this.$store.dispatch("record_controller/RECORD_STOP");
+        }
       }
     },
     sendButtonClicked: function () {
@@ -98,7 +95,7 @@ export default {
       animation-timing-function: linear;
     }
 
-    &.justToggled {
+    &.conBlock {
       pointer-events: none;
     }
   }

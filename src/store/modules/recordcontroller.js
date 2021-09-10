@@ -2,10 +2,11 @@ const record_controller = {
   namespaced: true,
   state: () => {
     return {
-      chunks: [],
-      videoStream: null,
       isRecording: false,
-      curMedia: null,
+      curMediaRecorder: null,
+      mediaStream: null,
+      chunks: [],
+      curFinishedFile: null,
       settingObj: {
         audio: true,
         video: {
@@ -17,30 +18,41 @@ const record_controller = {
       curErrorMsg: "",
     };
   },
-  setters: {
-    SET_ERROR_MSG: function (state, payload) {
-      state.curErrorMsg = payload;
-    },
-    SET_CUR_MEDIA: function (state, payload) {
-      state.curMedia = payload;
-    },
-  },
   mutations: {
     SET_RECORDING: (state) => (state.isRecording = true),
     SET_RECORDING_FIN: (state) => (state.isRecording = false),
-    SET_STREAM_CLEAR: (state) => (state.videoStream = null),
+    SET_STREAM_CLEAR: (state) => (state.mediaStream = null),
+    SET_CHUNKS_CLEAR: (state) => (state.chunks = []),
+    SET_ERROR_MSG: function (state, payload) {
+      state.curErrorMsg = payload;
+    },
+    SET_CUR_FINISHED_FILE: function (state, payload) {
+      console.log("payload is here finish", payload);
+      state.curFinishedFile = payload;
+    },
   },
   actions: {
     RECORD_START: ({ commit, state }, payload) => {
       commit("SET_RECORDING");
       console.log(payload);
-      state.videoStream = payload;
-      state.curMedia = new MediaRecorder(payload);
-      state.curMedia.start();
-      console.log(state.curMedia.state);
+      state.mediaStream = payload;
+      state.curMediaRecorder = new MediaRecorder(payload);
+
+      state.curMediaRecorder.onstop = () => {
+        let blob = new Blob(state.chunks, { type: "video/mp4;" });
+        commit("SET_CHUNKS_CLEAR");
+        let videoURL = window.URL.createObjectURL(blob);
+        commit("SET_CUR_FINISHED_FILE", videoURL);
+      };
+      state.curMediaRecorder.ondataavailable = function (ev) {
+        state.chunks.push(ev.data);
+      };
+
+      state.curMediaRecorder.start();
+      console.log(state.curMediaRecorder.state);
     },
     RECORD_STOP: ({ commit, state }) => {
-      state.videoStream.stop();
+      state.curMediaRecorder.stop();
       commit("SET_RECORDING_FIN");
       commit("SET_STREAM_CLEAR");
     },

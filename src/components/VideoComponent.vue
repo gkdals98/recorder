@@ -1,10 +1,15 @@
 <template>
   <div id="video_main">
-    <video id="player" v-if="!curRecord"></video>
+    <video
+      id="recorded-player"
+      v-if="!curRecord"
+      :src="curFinishedFile"
+    ></video>
+    {{ curFinishedFile }}
     <video
       id="record-preview"
       v-if="curRecord"
-      :srcObject.prop="curVideoFile"
+      :srcObject.prop="curMediaStream"
       autoplay
     ></video>
     <RecordController />
@@ -19,8 +24,11 @@ export default {
     curRecord: function () {
       return this.$store.state.record_controller.isRecording;
     },
-    curVideoFile: function () {
-      return this.$store.state.record_controller.videoStream;
+    curMediaStream: function () {
+      return this.$store.state.record_controller.mediaStream;
+    },
+    curFinishedFile: function () {
+      return this.$store.state.record_controller.curFinishedFile;
     },
   },
 };
@@ -29,7 +37,7 @@ export default {
 #video_main {
   color: darkslategray;
   padding: 10px;
-  #player {
+  #recorded-player {
     width: 80vw;
     max-width: 900px;
   }
