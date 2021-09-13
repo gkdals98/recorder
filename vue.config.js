@@ -18,5 +18,12 @@ module.exports = {
                 'components': path.join(__dirname, 'src/components'),
             }
         }
-    }  
+    },
+    devServer: {
+        proxy: {
+            '/sample': {
+                target: 'http://localhost:3000',
+            },
+        },
+    },
 }

@@ -40,7 +40,11 @@ export default {
           .enumerateDevices()
           .then((devices) => {
             devices.forEach((device) => {
-              console.log(device.kind.toUpperCase(), device.label);
+              console.log(
+                "Check Inputs - ",
+                device.kind.toUpperCase(),
+                device.label
+              );
               //, device.deviceId
             });
           })

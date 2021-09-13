@@ -1,15 +1,16 @@
 <template>
   <div id="video_main">
+    <!--v-if로 컴포넌트 전환을 할 경우, 컴포넌트 삭제 시에 Blob에 대한 처리 에러 발생-->
     <video
       id="recorded-player"
-      v-if="!curRecord"
       :src="curFinishedFile"
+      v-bind:style="{ display: playerDisplay }"
+      controls
     ></video>
-    {{ curFinishedFile }}
     <video
       id="record-preview"
-      v-if="curRecord"
       :srcObject.prop="curMediaStream"
+      v-bind:style="{ display: recorderDisplay }"
       autoplay
     ></video>
     <RecordController />
@@ -30,6 +31,12 @@ export default {
     curFinishedFile: function () {
       return this.$store.state.record_controller.curFinishedFile;
     },
+    playerDisplay: function () {
+      return this.curRecord ? "none" : "block";
+    },
+    recorderDisplay: function () {
+      return this.curRecord ? "block" : "none";
+    },
   },
 };
 </script>
@@ -37,12 +44,15 @@ export default {
 #video_main {
   color: darkslategray;
   padding: 10px;
+  video {
+    padding-bottom: 2px;
+  }
   #recorded-player {
-    width: 80vw;
+    width: 70vw;
     max-width: 900px;
   }
   #record-preview {
-    width: 80vw;
+    width: 70vw;
     max-width: 900px;
   }
 }
