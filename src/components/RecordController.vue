@@ -12,6 +12,7 @@
 </template>
 <script>
 import pageControll from "@/mixin/pageControll.js";
+//import axios from "axios";
 export default {
   name: "RecordController",
   mixins: [pageControll],
@@ -51,9 +52,15 @@ export default {
       }
     },
     sendButtonClicked: function () {
-      if (this.setShotControllBlock()) {
-        this.onRec = !this.onRec;
-        this.$store.commit("page_controller/SET_CURPAGE_VIDEO");
+      // axios.get("/sample").then((response) => {
+      //   console.log(response.data);
+      // });
+      if (
+        this.setShotControllBlock() &&
+        !this.onRec &&
+        this.$store.state.record_controller.blob
+      ) {
+        this.$store.dispatch("record_controller/UPLOAD_TO_SERVER");
       }
     },
   },

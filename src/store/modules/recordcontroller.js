@@ -1,3 +1,5 @@
+//import { uploadFile } from "@/api/files.js";
+import axios from "axios";
 const record_controller = {
   namespaced: true,
   state: () => {
@@ -7,6 +9,7 @@ const record_controller = {
       mediaStream: null,
       chunks: [],
       curFinishedFile: null,
+      blob: null,
       settingObj: {
         audio: true,
         video: {
@@ -50,6 +53,7 @@ const record_controller = {
     },
     RECORD_STOP_PROCESS: ({ commit, state }) => {
       let blob = new Blob(state.chunks, { mimeType: "video/mp4" });
+      state.blob = blob;
       let videoURL = URL.createObjectURL(blob);
       commit("SET_CUR_FINISHED_FILE", videoURL);
 
@@ -58,7 +62,22 @@ const record_controller = {
       //aElm.href = videoURL;
       //aElm.download = "sample.mp4";
       //aElm.click();
-      //commit("SET_RECORDING_FIN");
+      commit("SET_RECORDING_FIN");
+    },
+    UPLOAD_TO_SERVER: ({ state }) => {
+      let result = "Error";
+      axios.get("/sample").then((response) => {
+        console.log(response.data);
+      });
+      axios
+        .post("/upload", {
+          data: state.blob,
+          contentType: "multipart/form-data",
+        })
+        .then((response) => {
+          result = response;
+        });
+      return result;
     },
   },
 };

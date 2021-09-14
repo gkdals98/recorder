@@ -24,6 +24,9 @@ module.exports = {
             '/sample': {
                 target: 'http://localhost:3000',
             },
+            '/upload': {
+                target: 'http://localhost:3000',
+            },
         },
     },
 }
