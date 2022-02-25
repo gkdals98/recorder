@@ -66,18 +66,14 @@ const record_controller = {
     },
     UPLOAD_TO_SERVER: ({ state }) => {
       let result = "Error";
-      axios.get("/sample").then((response) => {
-        console.log(response.data);
+      const formData = new FormData();
+      formData.append("file", state.blob);
+
+      axios.post("/upload", formData).then((response) => {
+        console.log("response ", response);
+        result = response.data.message;
+        console.log("result ", result);
       });
-      axios
-        .post("/upload", {
-          data: state.blob,
-          contentType: "multipart/form-data",
-        })
-        .then((response) => {
-          result = response;
-        });
-      return result;
     },
   },
 };

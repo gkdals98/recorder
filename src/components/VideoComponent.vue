@@ -42,7 +42,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #video_main {
-  color: darkslategray;
+  color: rgb(69, 47, 79);
   padding: 10px;
   video {
     padding-bottom: 2px;
@@ -50,10 +50,12 @@ export default {
   #recorded-player {
     width: 70vw;
     max-width: 900px;
+    max-height: 450px;
   }
   #record-preview {
     width: 70vw;
     max-width: 900px;
+    max-height: 450px;
   }
 }
 </style>

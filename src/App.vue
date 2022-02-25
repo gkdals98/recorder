@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <div id="header">
-      <h1>Recorder</h1>
+      <h1>R</h1>
       <div id="nav">
         <router-link to="/">
-          <img src="@/assets/svg/home.svg" height="30px" />
+          <img src="@/assets/svg/home.svg" class="select-icon" />
         </router-link>
         <router-link to="/setting">
-          <img src="@/assets/svg/settings.svg" height="30px" />
+          <img src="@/assets/svg/settings.svg" class="select-icon" />
         </router-link>
       </div>
     </div>
@@ -66,32 +66,39 @@ export default {
   text-align: center;
   color: azure;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
 }
 
 #header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 10px 0 20px;
-  background-color: darkslategray;
+  padding: 0 10px 0 10px;
+  background-color: rgb(48, 47, 79);
+  border-bottom: solid 3px #c6c2f1;
   #nav {
     padding: 25px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
     text-align: center;
 
     a {
       font-weight: bold;
-      color: azure;
-      margin-right: 15px;
+      color: rgb(250, 240, 255);
+      margin-right: 0;
 
       &.router-link-exact-active {
-        color: #42b983;
+        color: #4a42b9;
         svg {
-          fill: #42b983;
+          fill: #4a42b9;
         }
+      }
+      .select-icon {
+        height: 30px;
+        padding: 10px 0 10px 0;
       }
     }
   }

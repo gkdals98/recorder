@@ -70,7 +70,7 @@ export default {
 #record-controller {
   height: 60px;
   padding: 5px;
-  background-color: #494949;
+  background-color: #47464b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,14 +81,14 @@ export default {
     width: 30px;
     height: 30px;
     font-size: 0;
-    background-color: rgb(255, 89, 103);
+    background-color: rgb(221, 83, 255);
     border-width: 3px;
     border-radius: 35px;
     margin: 18px;
     outline: none;
 
     &.notRec {
-      background-color: darkred;
+      background-color: darked;
       &:hover {
         filter: brightness(1.3);
         transition-duration: 0.7s;
@@ -108,7 +108,9 @@ export default {
   }
 
   .send-button {
-    height: 25px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4a42b9;
     .send-icon {
       height: 15px;
     }
@@ -116,13 +118,13 @@ export default {
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0px 0px 5px 0px rgba(173, 0, 0, 0.3);
+    box-shadow: 0px 0px 5px 0px rgba(173, 0, 164, 0.3);
   }
   65% {
-    box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, 0.3);
+    box-shadow: 0px 0px 5px 13px rgba(173, 0, 164, 0.3);
   }
   90% {
-    box-shadow: 0px 0px 8px 13px rgba(173, 0, 0, 0);
+    box-shadow: 0px 0px 8px 13px rgba(173, 0, 164, 0);
   }
 }
 @media (max-width: 767px) {

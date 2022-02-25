@@ -24,9 +24,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .record-main {
-  color: darkslategray;
+  color: rgb(79, 47, 67);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+#record-container {
+  padding: 15px 0 0 0;
 }
 </style>
